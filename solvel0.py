@@ -2,8 +2,6 @@ import numpy as np
 import gurobipy as gp
 from gurobipy import GRB
 
-# See /Users/pongpisit/Desktop/research/parametric-discovery
-import sys; sys.path.append('/Users/pongpisit/Desktop/research/parametric-discovery')
 from best_subset import backward_refinement
 from sklearn.preprocessing import normalize
 

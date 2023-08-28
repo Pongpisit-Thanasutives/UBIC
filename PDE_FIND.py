@@ -6,6 +6,9 @@ from scipy.sparse import dia_matrix
 import itertools
 import operator
 
+def measure_pce(prediction, ground_truth):
+    return 100*(np.abs(prediction-ground_truth)/np.abs(ground_truth))
+
 """
 A few functions used in PDE-FIND
 

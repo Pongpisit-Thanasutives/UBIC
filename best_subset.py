@@ -21,16 +21,17 @@ except ImportError:
     pass
 
 from functools import lru_cache, reduce
+from func_timeout import func_timeout, func_set_timeout, FunctionTimedOut
+from rapidfuzz import fuzz
+from statsmodels.tools.eval_measures import aicc as sm_aicc
+from statsmodels.tools.eval_measures import hqic as sm_hqic
+    
 import pysindy as ps
 try:
     from l0bnb import fit_path
     from abess.linear import LinearRegression
-    from func_timeout import func_timeout, func_set_timeout, FunctionTimedOut
-    from rapidfuzz import fuzz
-    from statsmodels.tools.eval_measures import aicc as sm_aicc
-    from statsmodels.tools.eval_measures import hqic as sm_hqic
 except ImportError:
-    print("Best-subset solvers are NOT installed.")
+    print("Complete best-subset solvers are not installed.")
 
 from tqdm import trange
 
