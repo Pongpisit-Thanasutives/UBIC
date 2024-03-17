@@ -1,6 +1,10 @@
 import numpy as np
-import gurobipy as gp
-from gurobipy import GRB
+
+try:
+    import gurobipy as gp
+    from gurobipy import GRB
+except ModuleNotFoundError:
+    print("gurobipy is not installed.")
 
 from best_subset import backward_refinement
 from sklearn.preprocessing import normalize

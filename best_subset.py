@@ -509,7 +509,8 @@ class ScoreTracker(object):
 
 class ABESS(ps.optimizers.BaseOptimizer):
     def __init__(self, abess_kw=None, group=None, is_normal=False, normalize_columns=False):
-        super(ABESS, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        try: super(ABESS, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        except TypeError: super(ABESS, self).__init__(copy_X=True, normalize_columns=normalize_columns)
         self.abess_kw = abess_kw
         self.group = group
         self.is_normal = is_normal
@@ -521,7 +522,8 @@ class ABESS(ps.optimizers.BaseOptimizer):
 
 class L0BNB(ps.optimizers.BaseOptimizer):
     def __init__(self, max_nonzeros=None, lam=1e-2, threshold=0.0, is_normal=False, normalize_columns=False):
-        super(L0BNB, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        try: super(L0BNB, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        except TypeError: super(L0BNB, self).__init__(copy_X=True, normalize_columns=normalize_columns)
         self.max_nonzeros = max_nonzeros
         self.lam = lam
         self.threshold = threshold
@@ -541,7 +543,8 @@ class L0BNB(ps.optimizers.BaseOptimizer):
 
 class BESS(ps.optimizers.BaseOptimizer):
     def __init__(self, bess_kw=None, group=None, is_normal=False, normalize_columns=False):
-        super(BESS, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        try: super(BESS, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        except TypeError: super(BESS, self).__init__(copy_X=True, normalize_columns=normalize_columns)
         self.bess_kw = bess_kw
         self.group = group
         self.is_normal = is_normal
@@ -553,7 +556,8 @@ class BESS(ps.optimizers.BaseOptimizer):
 
 class BruteForceRegressor(ps.optimizers.BaseOptimizer):
     def __init__(self, support_size=None, include=(), top=1, normalize_columns=False):
-        super(BruteForceRegressor, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        try: super(BruteForceRegressor, self).__init__(fit_intercept=False, copy_X=True, normalize_columns=normalize_columns)
+        except TypeError: super(BruteForceRegressor, self).__init__(copy_X=True, normalize_columns=normalize_columns)
         self.support_size = support_size
         self.include = include
         self.top = top
