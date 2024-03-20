@@ -29,7 +29,7 @@ def BIC_AIC(prediction, ground, nparams, reg_func=lambda x:x):
     llf = log_like_value(prediction, ground)
     return -2*llf + np.log(ground.shape[0])*nparams, -2*llf + 2*nparams
 
-def baye_uncertainties(best_subsets, dataset, u_type='var', take_sqrt=True, ridge_lambda=0):
+def baye_uncertainties(best_subsets, dataset, u_type='var', take_sqrt=True, ridge_lambda=0, unbiased=False):
     # if you want u_type='std', then call u_type='var' and take_sqrt=True
     XX, yy = dataset
     assert u_type == 'var' or 'cv' in u_type
@@ -46,6 +46,7 @@ def baye_uncertainties(best_subsets, dataset, u_type='var', take_sqrt=True, ridg
         err = yy-Phi@w
         # By MLE, we have variance_y written as follows:
         variance_y = np.mean(err**2)
+        if unbiased: variance_y = variance_y*len(err)/(len(err)-com)
         w = w[np.abs(w)>0].reshape((com, 1))
 
         # prior_mean = np.zeros((com, 1))
