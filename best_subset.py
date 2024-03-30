@@ -589,13 +589,14 @@ def convert2latex(text):
             s[i] = re.sub('u+', f"u^{u}", s[i])
     return ''.join(s)
 
-def ps_features(target, time, feature_library, kwargs={'fit_intercept':False, 'copy_X':True, 'normalize_columns':False}, optimizer=CandidateLibrary, differentiation_method=None, feature_names=['u'], get_latex=True):
+def ps_features(target, time, feature_library, kwargs={'fit_intercept':False, 'copy_X':True, 'normalize_columns':False}, optimizer=CandidateLibrary, differentiation_method=None, feature_names=['u'], get_latex=True, verbose=True):
     opt = optimizer(kwargs)
     if differentiation_method is None:
         if hasattr(feature_library, "differentiation_method") and hasattr(feature_library, "differentiation_kwargs"):
             differentiation_method = feature_library.differentiation_method(axis=1, **feature_library.differentiation_kwargs)
         else:
-            print("differentiation method or differentiation_kwargs is not implemented in feature_library.")
+            if verbose:
+                print("differentiation method or differentiation_kwargs is not implemented in feature_library.")
     cl = ps.SINDy(feature_library=feature_library, optimizer=opt, differentiation_method=differentiation_method, feature_names=feature_names)
     if len(target.shape) < 3: target = np.expand_dims(target, -1)
     cl.fit(target, t=time)
