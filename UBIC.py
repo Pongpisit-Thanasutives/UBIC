@@ -53,7 +53,7 @@ def baye_uncertainties(best_subsets, dataset, u_type='var', take_sqrt=True, ridg
         prior_cov = np.identity(com)
         if ridge_lambda > 0: 
             prior_mean = np.zeros(w.shape)
-            prior_cov = (variance_y/ridge_lambda)*prior_cov
+            prior_cov = (variance_y/ridge_lambda)*np.identity(com)
         else:
             prior_mean = w
             prior_cov = np.identity(com)
