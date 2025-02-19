@@ -47,14 +47,18 @@ def baye_uncertainties(best_subsets, dataset, u_type='var', take_sqrt=True, ridg
         # By MLE, we have variance_y written as follows:
         variance_y = np.mean(err**2)
         if unbiased: variance_y = variance_y*len(err)/(len(err)-com)
-        w = w[np.abs(w)>0].reshape((com, 1))
+        w = w.reshape(-1, 1) # w = w[np.abs(w)>0].reshape((com, 1))
 
-        # prior_mean = np.zeros((com, 1))
         prior_mean = w
         prior_cov = np.identity(com)
-        if ridge_lambda > 0: prior_cov = (variance_y/ridge_lambda)*prior_cov
-        prior_cov_inv = np.linalg.inv(prior_cov)
+        if ridge_lambda > 0: 
+            prior_mean = np.zeros(w.shape)
+            prior_cov = (variance_y/ridge_lambda)*prior_cov
+        else:
+            prior_mean = w
+            prior_cov = np.identity(com)
 
+        prior_cov_inv = np.linalg.inv(prior_cov)
         posterior_cov = variance_y*np.linalg.inv(variance_y * prior_cov_inv + Phi.T@Phi)
         posterior_mean = posterior_cov@(prior_cov_inv@prior_mean + (Phi.T@yy)/variance_y)
         post_means[:, k:k+1][list(efi)] = posterior_mean
