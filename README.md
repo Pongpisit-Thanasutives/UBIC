@@ -19,5 +19,5 @@ Official code implementation of the uncertainty-penalized Bayesian information c
 ```
 
 ## Note
-[UBIC-play](https://github.com/Pongpisit-Thanasutives/UBIC-play) and [PDE-FIND](https://github.com/Pongpisit-Thanasutives/PDE-FIND) are the development versions used to produce recent results in the paper.
+[UBIC-play](https://github.com/Pongpisit-Thanasutives/UBIC-play) and [PDE-FIND](https://github.com/Pongpisit-Thanasutives/PDE-FIND) are the development versions used to produce recent results in the paper. I occasionally conduct some experiments in [UBIC-test](https://github.com/Pongpisit-Thanasutives/UBIC-test).
 
