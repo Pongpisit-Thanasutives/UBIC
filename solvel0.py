@@ -154,7 +154,7 @@ def solvel0(X_pre, y_pre, is_normal=False, intercept=False, miosr=False, refine=
     if refine:
         print("Call backward_refinement...")
         st = refine_solvel0(out, (X_pre, y_pre), ic_type, verbose)
-        # out = sorted([st.track[e][0] for e in st.track if len(st.track[e][0]) <= max_complexity], key=len)
+        # out = sorted([st.track[e][0] for e in st.track if len(st.track[e][0]) <= max_complexity], key=len) # use this to cap the support size less than max_complexity
         out = sorted([st.track[e][0] for e in st.track], key=len)
     best_subsets = sorted(out, key=len)
     return best_subsets
