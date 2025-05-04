@@ -357,7 +357,7 @@ def brute_force_all_subsets(X, y, min_support_size=1, max_support_size=None):
     if max_support_size is None:
         n_features = X.shape[-1]
     else:
-        n_features = max_support_size
+        n_features = min(max_support_size, X.shape[-1])
     bf_solve = np.hstack([brute_force(X, y, s) for s in trange(min_support_size, n_features+1)]).T
     best_subsets = [nonz(bf) for bf in bf_solve]
     return bf_solve, best_subsets
